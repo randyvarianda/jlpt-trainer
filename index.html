@@ -8,174 +8,80 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --red: #e63946;
   --dark: #1a1a2e;
   --darker: #16213e;
   --card: #0f3460;
   --accent: #e94560;
   --text: #eaeaea;
   --muted: #8892a4;
-  --green: #4caf50;
 }
 
-body {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: var(--dark);
-  color: var(--text);
-  min-height: 100vh;
-}
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; }
 
 header {
   background: var(--darker);
   border-bottom: 2px solid var(--accent);
   padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
 }
-
 .logo { font-size: 22px; font-weight: 700; }
 .logo span { color: var(--accent); }
-
 .level-selector { display: flex; gap: 8px; }
 .level-btn {
-  padding: 6px 14px;
-  border: 1px solid var(--muted);
-  background: transparent;
-  color: var(--muted);
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
+  padding: 6px 14px; border: 1px solid var(--muted); background: transparent; color: var(--muted);
+  border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s;
 }
 .level-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
 .level-btn:hover:not(.active) { border-color: var(--text); color: var(--text); }
 
 nav {
-  display: flex;
-  background: var(--darker);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 0 24px;
-  overflow-x: auto;
+  display: flex; background: var(--darker);
+  border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 24px; overflow-x: auto;
 }
-
 .nav-tab {
-  padding: 14px 20px;
-  cursor: pointer;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
-  white-space: nowrap;
+  padding: 14px 18px; cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 500;
+  border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
 }
 .nav-tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .nav-tab:hover:not(.active) { color: var(--text); }
 
 main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
-
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
 /* ---- FLASHCARDS ---- */
 .flashcard-container { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.flashcard-progress { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 0 12px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.4s; }
 
-.flashcard-progress {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.progress-bar {
-  flex: 1;
-  height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
-  margin: 0 12px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 3px;
-  transition: width 0.4s;
-}
-
-.card-scene {
-  width: 100%;
-  max-width: 480px;
-  height: 280px;
-  perspective: 1000px;
-  cursor: pointer;
-}
-.card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-}
+.card-scene { width: 100%; max-width: 480px; height: 320px; perspective: 1000px; cursor: pointer; }
+.card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s ease; }
 .card.flipped { transform: rotateY(180deg); }
 .card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 24px;
+  position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+  border-radius: 16px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 8px; padding: 20px;
 }
-.card-front {
-  background: linear-gradient(135deg, var(--card), #1a4a7a);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.card-back {
-  background: linear-gradient(135deg, #1a3a2e, #0d4a2e);
-  border: 1px solid rgba(76,175,80,0.3);
-  transform: rotateY(180deg);
-}
+.card-front { background: linear-gradient(135deg, var(--card), #1a4a7a); border: 1px solid rgba(255,255,255,0.1); }
+.card-back { background: linear-gradient(135deg, #1a3a2e, #0d4a2e); border: 1px solid rgba(76,175,80,0.3); transform: rotateY(180deg); }
 .card-kanji { font-size: 80px; font-weight: 300; line-height: 1; }
 .card-hint { color: var(--muted); font-size: 13px; }
-.card-reading { font-size: 32px; font-weight: 300; }
-.card-romaji { color: var(--muted); font-size: 17px; }
-.card-meaning { font-size: 26px; font-weight: 500; color: #7fff8c; }
-.card-type {
-  font-size: 12px;
-  color: var(--muted);
-  background: rgba(255,255,255,0.06);
-  padding: 4px 10px;
-  border-radius: 12px;
+.card-reading { font-size: 28px; font-weight: 300; }
+.card-romaji { color: var(--muted); font-size: 15px; }
+.card-meaning { font-size: 24px; font-weight: 500; color: #7fff8c; }
+.card-type { font-size: 12px; color: var(--muted); background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 12px; }
+.card-mnem {
+  font-size: 12px; color: #aed4ff; font-style: italic; text-align: center;
+  background: rgba(100,150,255,0.08); border: 1px solid rgba(100,150,255,0.2);
+  border-radius: 8px; padding: 6px 10px; max-width: 100%; line-height: 1.4;
 }
 
 .flashcard-actions { display: flex; gap: 16px; }
-.btn {
-  padding: 12px 28px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-.btn-wrong {
-  background: rgba(231,76,60,0.15);
-  border: 1px solid rgba(231,76,60,0.5);
-  color: #e74c3c;
-}
+.btn { padding: 12px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+.btn-wrong { background: rgba(231,76,60,0.15); border: 1px solid rgba(231,76,60,0.5); color: #e74c3c; }
 .btn-wrong:hover { background: rgba(231,76,60,0.25); }
-.btn-correct {
-  background: rgba(76,175,80,0.15);
-  border: 1px solid rgba(76,175,80,0.5);
-  color: #4caf50;
-}
+.btn-correct { background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.5); color: #4caf50; }
 .btn-correct:hover { background: rgba(76,175,80,0.25); }
 .btn-primary { background: var(--accent); color: white; border: none; }
 .btn-primary:hover { background: #c73652; }
@@ -190,100 +96,77 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
 .stat.wrong .stat-value { color: #e74c3c; }
 
 /* ---- QUIZ ---- */
-.quiz-question {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
+.quiz-question { background: var(--card); border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.08); }
 .quiz-kanji { font-size: 72px; margin-bottom: 8px; }
 .quiz-prompt { color: var(--muted); font-size: 14px; }
-.quiz-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
 .option-btn {
-  padding: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 15px;
-  transition: all 0.2s;
-  text-align: center;
+  padding: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; color: var(--text); cursor: pointer; font-size: 15px; transition: all 0.2s; text-align: center;
 }
-.option-btn:hover:not(:disabled) {
-  background: rgba(255,255,255,0.09);
-  border-color: var(--accent);
-}
+.option-btn:hover:not(:disabled) { background: rgba(255,255,255,0.09); border-color: var(--accent); }
 .option-btn.correct { background: rgba(76,175,80,0.2); border-color: #4caf50; color: #4caf50; }
 .option-btn.wrong { background: rgba(231,76,60,0.2); border-color: #e74c3c; color: #e74c3c; }
 .quiz-feedback { text-align: center; font-size: 17px; font-weight: 600; margin-bottom: 16px; min-height: 28px; }
-
 .quiz-score-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .quiz-score-text { font-size: 13px; color: var(--muted); white-space: nowrap; }
 
+/* ---- EXAM ---- */
+.exam-level-info {
+  background: rgba(233,69,96,0.1); border: 1px solid rgba(233,69,96,0.3);
+  border-radius: 10px; padding: 14px 18px; margin-bottom: 24px;
+  font-size: 13px; color: #ffb3bf; line-height: 1.6;
+}
+.exam-question-card {
+  background: var(--card); border-radius: 16px; padding: 28px;
+  margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.08);
+}
+.exam-q-num { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+.exam-q-type {
+  display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px; margin-bottom: 12px;
+  background: rgba(233,69,96,0.15); color: #ffb3bf; border: 1px solid rgba(233,69,96,0.3);
+}
+.exam-sentence { font-size: 20px; line-height: 1.7; margin-bottom: 6px; }
+.exam-sentence-jp { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+.exam-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.exam-opt {
+  padding: 12px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: var(--text); cursor: pointer; font-size: 14px; transition: all 0.2s; text-align: left;
+}
+.exam-opt:hover:not(:disabled) { background: rgba(255,255,255,0.09); border-color: var(--accent); }
+.exam-opt.correct { background: rgba(76,175,80,0.2); border-color: #4caf50; color: #4caf50; }
+.exam-opt.wrong { background: rgba(231,76,60,0.2); border-color: #e74c3c; color: #e74c3c; }
+.exam-explanation {
+  display: none; margin-top: 12px; padding: 12px 16px;
+  background: rgba(255,255,255,0.04); border-radius: 8px;
+  font-size: 13px; color: #aed4ff; line-height: 1.6; border-left: 3px solid #aed4ff;
+}
+.exam-score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.exam-score-badge {
+  background: rgba(233,69,96,0.15); border: 1px solid rgba(233,69,96,0.3);
+  padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: #ffb3bf;
+}
+
 /* ---- KANA ---- */
 .kana-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-.kana-tab-btn {
-  padding: 8px 20px;
-  border: 1px solid var(--muted);
-  background: transparent;
-  color: var(--muted);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+.kana-tab-btn { padding: 8px 20px; border: 1px solid var(--muted); background: transparent; color: var(--muted); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
 .kana-tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
 .kana-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-.kana-cell {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 12px 8px;
-  text-align: center;
-}
+.kana-cell { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 8px; text-align: center; }
 .kana-char { font-size: 24px; display: block; }
 .kana-rom { font-size: 11px; color: var(--muted); display: block; margin-top: 4px; }
 
 /* ---- PROGRESS ---- */
 .progress-section { display: flex; flex-direction: column; gap: 20px; }
-.progress-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 24px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.progress-card h3 {
-  margin-bottom: 16px;
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
+.progress-card { background: var(--card); border-radius: 12px; padding: 24px; border: 1px solid rgba(255,255,255,0.08); }
+.progress-card h3 { margin-bottom: 16px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
 .big-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.big-stat {
-  text-align: center;
-  padding: 16px;
-  background: rgba(0,0,0,0.2);
-  border-radius: 8px;
-}
+.big-stat { text-align: center; padding: 16px; background: rgba(0,0,0,0.2); border-radius: 8px; }
 .big-stat-value { font-size: 36px; font-weight: 700; color: var(--accent); }
 .big-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .mastered-words { display: flex; flex-wrap: wrap; gap: 8px; }
-.mastered-tag {
-  background: rgba(76,175,80,0.12);
-  border: 1px solid rgba(76,175,80,0.3);
-  color: #7fff8c;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-}
+.mastered-tag { background: rgba(76,175,80,0.12); border: 1px solid rgba(76,175,80,0.3); color: #7fff8c; padding: 4px 12px; border-radius: 20px; font-size: 14px; }
 .empty-state { color: var(--muted); padding: 12px 0; font-size: 14px; }
 
 /* ---- COMPLETION ---- */
@@ -292,12 +175,11 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
 .completion-title { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
 .completion-sub { color: var(--muted); margin-bottom: 28px; }
 .completion-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 28px; }
-
 .section-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
 .section-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
 
 @media (max-width: 500px) {
-  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-options, .exam-options { grid-template-columns: 1fr; }
   .big-stats { grid-template-columns: 1fr; }
   .card-kanji { font-size: 60px; }
 }
@@ -319,6 +201,7 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
 <nav>
   <div class="nav-tab active" onclick="showTab('flashcards', this)">Flashcards</div>
   <div class="nav-tab" onclick="showTab('quiz', this)">Quiz</div>
+  <div class="nav-tab" onclick="showTab('exam', this)">Exam Practice</div>
   <div class="nav-tab" onclick="showTab('kana', this)">Kana Chart</div>
   <div class="nav-tab" onclick="showTab('progress', this)">Progress</div>
 </nav>
@@ -329,7 +212,7 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
     <div class="flashcard-container">
       <div style="width:100%">
         <div class="section-title">Vocabulary Flashcards</div>
-        <div class="section-subtitle">Click the card to reveal reading and meaning</div>
+        <div class="section-subtitle">Click the card to reveal reading, meaning & mnemonic</div>
       </div>
 
       <div class="flashcard-progress" id="fc-progress-bar">
@@ -353,6 +236,7 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
             <div class="card-romaji" id="fc-romaji">mizu</div>
             <div class="card-meaning" id="fc-meaning">Water</div>
             <div class="card-type" id="fc-type-back">Noun</div>
+            <div class="card-mnem" id="fc-mnem" style="display:none"></div>
           </div>
         </div>
       </div>
@@ -370,9 +254,7 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
           <div class="stat correct"><div class="stat-value" id="fc-final-correct">0</div><div class="stat-label">Known</div></div>
           <div class="stat wrong"><div class="stat-value" id="fc-final-wrong">0</div><div class="stat-label">Review</div></div>
         </div>
-        <div style="display:flex;gap:12px;justify-content:center">
-          <button class="btn btn-primary" onclick="initFlashcards()">Restart</button>
-        </div>
+        <button class="btn btn-primary" onclick="initFlashcards()">Restart</button>
       </div>
     </div>
   </div>
@@ -380,7 +262,7 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
   <!-- ===== QUIZ ===== -->
   <div id="tab-quiz" class="tab-content">
     <div class="section-title">Multiple Choice Quiz</div>
-    <div class="section-subtitle">10 random questions per round</div>
+    <div class="section-subtitle">10 random vocabulary questions per round</div>
 
     <div class="quiz-score-bar">
       <span class="quiz-score-text" id="quiz-score-text">Score: 0/0</span>
@@ -410,6 +292,19 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
       </div>
       <button class="btn btn-primary" onclick="startQuiz()">Play Again</button>
     </div>
+  </div>
+
+  <!-- ===== EXAM PRACTICE ===== -->
+  <div id="tab-exam" class="tab-content">
+    <div class="section-title">Exam Practice</div>
+    <div class="section-subtitle" id="exam-subtitle">Realistic JLPT N5 style questions</div>
+
+    <div class="exam-score-header">
+      <div class="exam-level-info" id="exam-level-info"></div>
+      <div class="exam-score-badge" id="exam-score-badge">Score: 0 / 0</div>
+    </div>
+
+    <div id="exam-questions"></div>
   </div>
 
   <!-- ===== KANA ===== -->
@@ -453,99 +348,91 @@ main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
 </main>
 
 <script>
-// ==================== DATA ====================
+// ==================== VOCAB DATA ====================
 const vocab = {
   N5: [
-    // Numbers
-    { k:"一", r:"いち", ro:"ichi", m:"One", t:"Number" },
-    { k:"二", r:"に", ro:"ni", m:"Two", t:"Number" },
-    { k:"三", r:"さん", ro:"san", m:"Three", t:"Number" },
-    { k:"四", r:"よん", ro:"yon", m:"Four", t:"Number" },
-    { k:"五", r:"ご", ro:"go", m:"Five", t:"Number" },
-    { k:"六", r:"ろく", ro:"roku", m:"Six", t:"Number" },
-    { k:"七", r:"なな", ro:"nana", m:"Seven", t:"Number" },
-    { k:"八", r:"はち", ro:"hachi", m:"Eight", t:"Number" },
-    { k:"九", r:"きゅう", ro:"kyuu", m:"Nine", t:"Number" },
-    { k:"十", r:"じゅう", ro:"juu", m:"Ten", t:"Number" },
-    { k:"百", r:"ひゃく", ro:"hyaku", m:"Hundred", t:"Number" },
-    { k:"千", r:"せん", ro:"sen", m:"Thousand", t:"Number" },
-    // Time
-    { k:"日", r:"ひ", ro:"hi", m:"Day / Sun", t:"Noun" },
-    { k:"月", r:"つき", ro:"tsuki", m:"Moon / Month", t:"Noun" },
-    { k:"年", r:"とし", ro:"toshi", m:"Year", t:"Noun" },
-    { k:"今", r:"いま", ro:"ima", m:"Now", t:"Noun" },
-    { k:"今日", r:"きょう", ro:"kyou", m:"Today", t:"Noun" },
-    { k:"明日", r:"あした", ro:"ashita", m:"Tomorrow", t:"Noun" },
-    { k:"昨日", r:"きのう", ro:"kinou", m:"Yesterday", t:"Noun" },
+    { k:"一", r:"いち", ro:"ichi", m:"One", t:"Number", mnem:"💡 A single horizontal stroke — just ONE line." },
+    { k:"二", r:"に", ro:"ni", m:"Two", t:"Number", mnem:"💡 TWO horizontal lines stacked on top of each other." },
+    { k:"三", r:"さん", ro:"san", m:"Three", t:"Number", mnem:"💡 THREE horizontal lines — you can count them!" },
+    { k:"四", r:"よん", ro:"yon", m:"Four", t:"Number", mnem:"💡 A box divided into sections — like a window with FOUR panes." },
+    { k:"五", r:"ご", ro:"go", m:"Five", t:"Number", mnem:"💡 Looks like the number 5 written with an extra top bar." },
+    { k:"六", r:"ろく", ro:"roku", m:"Six", t:"Number", mnem:"💡 A person with a hat — six-sided roof hat (roku = rock? 6 rocks)." },
+    { k:"七", r:"なな", ro:"nana", m:"Seven", t:"Number", mnem:"💡 Resembles a cut stick — like cutting into 7 pieces with a knife slash." },
+    { k:"八", r:"はち", ro:"hachi", m:"Eight", t:"Number", mnem:"💡 TWO lines spreading outward — like opening legs for balance (think spider legs × 8)." },
+    { k:"九", r:"きゅう", ro:"kyuu", m:"Nine", t:"Number", mnem:"💡 A hook — like a 9 drawn by hand with a curved hook at bottom." },
+    { k:"十", r:"じゅう", ro:"juu", m:"Ten", t:"Number", mnem:"💡 A plus sign ✚ — cross your fingers, you reached TEN!" },
+    { k:"百", r:"ひゃく", ro:"hyaku", m:"Hundred", t:"Number", mnem:"💡 A white (白) roof — a HUNDRED tiles on a white roof." },
+    { k:"千", r:"せん", ro:"sen", m:"Thousand", t:"Number", mnem:"💡 A person 人 with a hat — a thousand-strong army in hats." },
+    { k:"日", r:"ひ", ro:"hi", m:"Day / Sun", t:"Noun", mnem:"💡 A window with the SUN shining through — rectangle with a center bar." },
+    { k:"月", r:"つき", ro:"tsuki", m:"Moon / Month", t:"Noun", mnem:"💡 A crescent MOON shape — the curved strokes form a moon." },
+    { k:"年", r:"とし", ro:"toshi", m:"Year", t:"Noun", mnem:"💡 Grain 禾 bent by the wind — crops harvested once a YEAR." },
+    { k:"今", r:"いま", ro:"ima", m:"Now", t:"Noun", mnem:"💡 A person 人 sitting under a roof — sitting here, right NOW." },
+    { k:"今日", r:"きょう", ro:"kyou", m:"Today", t:"Noun", mnem:"💡 Now (今) + Sun/Day (日) = TODAY." },
+    { k:"明日", r:"あした", ro:"ashita", m:"Tomorrow", t:"Noun", mnem:"💡 Bright (明) + Sun (日) — the TOMORROW sun will be bright." },
+    { k:"昨日", r:"きのう", ro:"kinou", m:"Yesterday", t:"Noun", mnem:"💡 Old/past (昨) + Sun (日) — the sun of the past = YESTERDAY." },
     { k:"時間", r:"じかん", ro:"jikan", m:"Time / Hour", t:"Noun" },
-    { k:"毎日", r:"まいにち", ro:"mainichi", m:"Every day", t:"Noun" },
+    { k:"毎日", r:"まいにち", ro:"mainichi", m:"Every day", t:"Noun", mnem:"💡 Every (毎) + Day (日) = EVERY DAY." },
     { k:"週", r:"しゅう", ro:"shuu", m:"Week", t:"Noun" },
-    // Nature
-    { k:"水", r:"みず", ro:"mizu", m:"Water", t:"Noun" },
-    { k:"火", r:"ひ", ro:"hi", m:"Fire", t:"Noun" },
-    { k:"山", r:"やま", ro:"yama", m:"Mountain", t:"Noun" },
-    { k:"川", r:"かわ", ro:"kawa", m:"River", t:"Noun" },
-    { k:"木", r:"き", ro:"ki", m:"Tree / Wood", t:"Noun" },
-    { k:"空", r:"そら", ro:"sora", m:"Sky", t:"Noun" },
-    { k:"海", r:"うみ", ro:"umi", m:"Sea / Ocean", t:"Noun" },
-    { k:"花", r:"はな", ro:"hana", m:"Flower", t:"Noun" },
-    // People
-    { k:"人", r:"ひと", ro:"hito", m:"Person", t:"Noun" },
-    { k:"男", r:"おとこ", ro:"otoko", m:"Man / Male", t:"Noun" },
-    { k:"女", r:"おんな", ro:"onna", m:"Woman / Female", t:"Noun" },
-    { k:"子ども", r:"こども", ro:"kodomo", m:"Child", t:"Noun" },
-    { k:"先生", r:"せんせい", ro:"sensei", m:"Teacher", t:"Noun" },
-    { k:"学生", r:"がくせい", ro:"gakusei", m:"Student", t:"Noun" },
+    { k:"水", r:"みず", ro:"mizu", m:"Water", t:"Noun", mnem:"💡 A flowing river — center vertical stream with side ripples splashing out." },
+    { k:"火", r:"ひ", ro:"hi", m:"Fire", t:"Noun", mnem:"💡 A flame — top stroke is the tip, bottom strokes are sparks flying out 🔥." },
+    { k:"山", r:"やま", ro:"yama", m:"Mountain", t:"Noun", mnem:"💡 THREE peaks — a mountain range drawn in three bumps 🏔️." },
+    { k:"川", r:"かわ", ro:"kawa", m:"River", t:"Noun", mnem:"💡 THREE flowing lines — water flowing downward like a river 〜〜〜." },
+    { k:"木", r:"き", ro:"ki", m:"Tree / Wood", t:"Noun", mnem:"💡 A TREE — trunk in the center, branches above, roots below 🌳." },
+    { k:"空", r:"そら", ro:"sora", m:"Sky", t:"Noun", mnem:"💡 A hole in the cave (穴) + work (工) — digging a hole to see the SKY." },
+    { k:"海", r:"うみ", ro:"umi", m:"Sea / Ocean", t:"Noun", mnem:"💡 Water (氵) + mother (母) — the SEA is the mother of water." },
+    { k:"花", r:"はな", ro:"hana", m:"Flower", t:"Noun", mnem:"💡 Grass radical (艹) on top — plants that change (化) into FLOWERS." },
+    { k:"人", r:"ひと", ro:"hito", m:"Person", t:"Noun", mnem:"💡 TWO strokes like legs — a PERSON striding forward." },
+    { k:"男", r:"おとこ", ro:"otoko", m:"Man / Male", t:"Noun", mnem:"💡 Field (田) + strength (力) — a MAN working in the field with strength." },
+    { k:"女", r:"おんな", ro:"onna", m:"Woman / Female", t:"Noun", mnem:"💡 A figure seated gracefully — the curves depict a WOMAN." },
+    { k:"子ども", r:"こども", ro:"kodomo", m:"Child", t:"Noun", mnem:"💡 子 looks like a baby with arms outstretched — CHILD." },
+    { k:"先生", r:"せんせい", ro:"sensei", m:"Teacher", t:"Noun", mnem:"💡 先 (ahead/first) + 生 (life/birth) — one born before you = TEACHER." },
+    { k:"学生", r:"がくせい", ro:"gakusei", m:"Student", t:"Noun", mnem:"💡 学 (study) + 生 (life) — one whose life is studying = STUDENT." },
     { k:"友達", r:"ともだち", ro:"tomodachi", m:"Friend", t:"Noun" },
     { k:"家族", r:"かぞく", ro:"kazoku", m:"Family", t:"Noun" },
-    { k:"母", r:"はは", ro:"haha", m:"Mother", t:"Noun" },
-    { k:"父", r:"ちち", ro:"chichi", m:"Father", t:"Noun" },
-    // Food
-    { k:"食べ物", r:"たべもの", ro:"tabemono", m:"Food", t:"Noun" },
-    { k:"飲み物", r:"のみもの", ro:"nomimono", m:"Drink / Beverage", t:"Noun" },
-    { k:"ご飯", r:"ごはん", ro:"gohan", m:"Rice / Meal", t:"Noun" },
-    { k:"魚", r:"さかな", ro:"sakana", m:"Fish", t:"Noun" },
-    { k:"肉", r:"にく", ro:"niku", m:"Meat", t:"Noun" },
+    { k:"母", r:"はは", ro:"haha", m:"Mother", t:"Noun", mnem:"💡 女 (woman) with two dots — a MOTHER nursing a child." },
+    { k:"父", r:"ちち", ro:"chichi", m:"Father", t:"Noun", mnem:"💡 A hand holding a stick — a FATHER with authority." },
+    { k:"食べ物", r:"たべもの", ro:"tabemono", m:"Food", t:"Noun", mnem:"💡 食べ (eat) + 物 (thing) = things you eat = FOOD." },
+    { k:"飲み物", r:"のみもの", ro:"nomimono", m:"Drink / Beverage", t:"Noun", mnem:"💡 飲む (drink) + 物 (thing) = things you drink = DRINK." },
+    { k:"ご飯", r:"ごはん", ro:"gohan", m:"Rice / Meal", t:"Noun", mnem:"💡 ご (honorific) + 飯 (cooked rice) — polite word for RICE/MEAL." },
+    { k:"魚", r:"さかな", ro:"sakana", m:"Fish", t:"Noun", mnem:"💡 Looks like a fish on a plate — the character has the fish outline 🐟." },
+    { k:"肉", r:"にく", ro:"niku", m:"Meat", t:"Noun", mnem:"💡 Like a piece of MEAT on the rack — inner sections look like ribs." },
     { k:"野菜", r:"やさい", ro:"yasai", m:"Vegetable", t:"Noun" },
-    { k:"果物", r:"くだもの", ro:"kudamono", m:"Fruit", t:"Noun" },
-    // Places
-    { k:"学校", r:"がっこう", ro:"gakkou", m:"School", t:"Noun" },
-    { k:"家", r:"いえ", ro:"ie", m:"House / Home", t:"Noun" },
+    { k:"果物", r:"くだもの", ro:"kudamono", m:"Fruit", t:"Noun", mnem:"💡 果 (fruit/result) + 物 (thing) — things from fruit trees 🍎." },
+    { k:"学校", r:"がっこう", ro:"gakkou", m:"School", t:"Noun", mnem:"💡 学 (study) + 校 (school building) = SCHOOL." },
+    { k:"家", r:"いえ", ro:"ie", m:"House / Home", t:"Noun", mnem:"💡 A roof 宀 over a pig 豕 — ancient HOUSE kept pigs inside." },
     { k:"駅", r:"えき", ro:"eki", m:"Train station", t:"Noun" },
     { k:"店", r:"みせ", ro:"mise", m:"Shop / Store", t:"Noun" },
-    { k:"病院", r:"びょういん", ro:"byouin", m:"Hospital", t:"Noun" },
-    // Verbs
-    { k:"食べる", r:"たべる", ro:"taberu", m:"To eat", t:"Verb" },
-    { k:"飲む", r:"のむ", ro:"nomu", m:"To drink", t:"Verb" },
-    { k:"見る", r:"みる", ro:"miru", m:"To see / watch", t:"Verb" },
-    { k:"聞く", r:"きく", ro:"kiku", m:"To listen / hear", t:"Verb" },
-    { k:"話す", r:"はなす", ro:"hanasu", m:"To speak", t:"Verb" },
+    { k:"病院", r:"びょういん", ro:"byouin", m:"Hospital", t:"Noun", mnem:"💡 病 (illness) + 院 (institution) = place for illness = HOSPITAL." },
+    { k:"食べる", r:"たべる", ro:"taberu", m:"To eat", t:"Verb", mnem:"💡 食 shows a person 人 over a bowl 良 — TO EAT." },
+    { k:"飲む", r:"のむ", ro:"nomu", m:"To drink", t:"Verb", mnem:"💡 飲 has the eating radical + breath 欠 — opening mouth TO DRINK." },
+    { k:"見る", r:"みる", ro:"miru", m:"To see / watch", t:"Verb", mnem:"💡 目 (eye) + 人 (person) = a person using their eye = TO SEE." },
+    { k:"聞く", r:"きく", ro:"kiku", m:"To listen / hear", t:"Verb", mnem:"💡 門 (gate) + 耳 (ear) — ear pressed to a gate = TO LISTEN." },
+    { k:"話す", r:"はなす", ro:"hanasu", m:"To speak", t:"Verb", mnem:"💡 言 (words) + 舌 (tongue) — using tongue to make words = TO SPEAK." },
     { k:"読む", r:"よむ", ro:"yomu", m:"To read", t:"Verb" },
     { k:"書く", r:"かく", ro:"kaku", m:"To write", t:"Verb" },
     { k:"行く", r:"いく", ro:"iku", m:"To go", t:"Verb" },
     { k:"来る", r:"くる", ro:"kuru", m:"To come", t:"Verb" },
     { k:"帰る", r:"かえる", ro:"kaeru", m:"To return home", t:"Verb" },
     { k:"買う", r:"かう", ro:"kau", m:"To buy", t:"Verb" },
-    { k:"寝る", r:"ねる", ro:"neru", m:"To sleep", t:"Verb" },
+    { k:"寝る", r:"ねる", ro:"neru", m:"To sleep", t:"Verb", mnem:"💡 寝 has 宀 (roof) + 爿 (bed frame) — sleeping under a roof in bed." },
     { k:"起きる", r:"おきる", ro:"okiru", m:"To wake up", t:"Verb" },
     { k:"する", r:"する", ro:"suru", m:"To do", t:"Verb" },
     { k:"ある", r:"ある", ro:"aru", m:"To exist (things)", t:"Verb" },
     { k:"いる", r:"いる", ro:"iru", m:"To exist (people/animals)", t:"Verb" },
     { k:"わかる", r:"わかる", ro:"wakaru", m:"To understand", t:"Verb" },
-    // Adjectives
-    { k:"大きい", r:"おおきい", ro:"ookii", m:"Big / Large", t:"Adjective" },
-    { k:"小さい", r:"ちいさい", ro:"chiisai", m:"Small / Little", t:"Adjective" },
+    { k:"大きい", r:"おおきい", ro:"ookii", m:"Big / Large", t:"Adjective", mnem:"💡 大 shows a person stretching BOTH arms wide — BIG!" },
+    { k:"小さい", r:"ちいさい", ro:"chiisai", m:"Small / Little", t:"Adjective", mnem:"💡 小 is three tiny marks — a small dot flanked by two tiny strokes." },
     { k:"新しい", r:"あたらしい", ro:"atarashii", m:"New", t:"Adjective" },
     { k:"古い", r:"ふるい", ro:"furui", m:"Old (thing)", t:"Adjective" },
-    { k:"高い", r:"たかい", ro:"takai", m:"Expensive / Tall", t:"Adjective" },
-    { k:"安い", r:"やすい", ro:"yasui", m:"Cheap", t:"Adjective" },
+    { k:"高い", r:"たかい", ro:"takai", m:"Expensive / Tall", t:"Adjective", mnem:"💡 高 looks like a tall tower/pagoda — TALL and thus EXPENSIVE." },
+    { k:"安い", r:"やすい", ro:"yasui", m:"Cheap", t:"Adjective", mnem:"💡 安 is a woman under a roof — peaceful = content = CHEAP/PEACEFUL." },
     { k:"良い", r:"いい", ro:"ii", m:"Good", t:"Adjective" },
     { k:"悪い", r:"わるい", ro:"warui", m:"Bad", t:"Adjective" },
     { k:"楽しい", r:"たのしい", ro:"tanoshii", m:"Fun / Enjoyable", t:"Adjective" },
     { k:"難しい", r:"むずかしい", ro:"muzukashii", m:"Difficult", t:"Adjective" },
     { k:"易しい", r:"やさしい", ro:"yasashii", m:"Easy", t:"Adjective" },
-    { k:"暑い", r:"あつい", ro:"atsui", m:"Hot (weather)", t:"Adjective" },
-    { k:"寒い", r:"さむい", ro:"samui", m:"Cold (weather)", t:"Adjective" },
+    { k:"暑い", r:"あつい", ro:"atsui", m:"Hot (weather)", t:"Adjective", mnem:"💡 暑 = sun (日) + something heavy — the SUN bearing down, HOT!" },
+    { k:"寒い", r:"さむい", ro:"samui", m:"Cold (weather)", t:"Adjective", mnem:"💡 寒 has ice crystals (冫) under a roof — sheltering from COLD." },
   ],
   N4: [
     { k:"経験", r:"けいけん", ro:"keiken", m:"Experience", t:"Noun" },
@@ -614,6 +501,306 @@ const vocab = {
   ]
 };
 
+// ==================== EXAM DATA ====================
+const examData = {
+  N5: {
+    info: "N5 is the easiest level. Tests basic vocabulary (~800 words), simple kanji (~100), hiragana, katakana, and fundamental grammar like particles は・を・が・に・で, て-form, and simple sentences.",
+    questions: [
+      {
+        type: "Vocabulary", qnum: 1,
+        sentence: "＿＿に　なにが　ありますか？",
+        eng: "What is ___ ?",
+        prompt: "Choose the correct word for 'in the park':",
+        options: ["こうえんに", "こうえんで", "こうえんを", "こうえんが"],
+        answer: 0,
+        explain: "に (ni) marks location where something EXISTS. Use に with ある/いる verbs. Example: 公園に犬がいます = There is a dog in the park."
+      },
+      {
+        type: "Grammar", qnum: 2,
+        sentence: "わたしは　まいあさ　ごはんを　___。",
+        eng: "I eat rice every morning.",
+        prompt: "Which verb form correctly completes this sentence?",
+        options: ["たべます", "のみます", "ねます", "きます"],
+        answer: 0,
+        explain: "食べます (tabemasu) means 'to eat'. のみます = to drink, ねます = to sleep, きます = to come/wear."
+      },
+      {
+        type: "Kanji Reading", qnum: 3,
+        sentence: "あの　山　は　たかいです。",
+        eng: "That mountain is tall.",
+        prompt: "How do you read 山?",
+        options: ["やま", "かわ", "うみ", "もり"],
+        answer: 0,
+        explain: "山 (yama) means mountain. Remember: three peaks = mountain! 川 = river, 海 = sea, 森 = forest."
+      },
+      {
+        type: "Particle", qnum: 4,
+        sentence: "わたしは　がっこう　___　いきます。",
+        eng: "I go to school.",
+        prompt: "Which particle correctly fills the blank?",
+        options: ["に", "が", "は", "も"],
+        answer: 0,
+        explain: "に (ni) marks the destination with movement verbs like 行く (to go). がっこうに行きます = I go to school."
+      },
+      {
+        type: "Vocabulary", qnum: 5,
+        sentence: "この　えいがは　とても　___　です。",
+        eng: "This movie is very ___.",
+        prompt: "Which adjective means 'fun / enjoyable'?",
+        options: ["たのしい", "むずかしい", "さむい", "ふるい"],
+        answer: 0,
+        explain: "楽しい (tanoshii) = fun/enjoyable. 難しい = difficult, 寒い = cold, 古い = old (thing)."
+      },
+      {
+        type: "Grammar", qnum: 6,
+        sentence: "これは　だれ　___　かばんですか？",
+        eng: "Whose bag is this?",
+        prompt: "Which particle shows possession here?",
+        options: ["の", "は", "を", "に"],
+        answer: 0,
+        explain: "の (no) marks possession. だれの = whose. Example: 田中さんのかばん = Tanaka's bag."
+      },
+    ]
+  },
+  N4: {
+    info: "N4 builds on N5 with ~1,500 vocabulary words, ~300 kanji, and grammar patterns including て-form extensions (てしまう・ておく・てみる), conditional forms (〜たら・〜ば), and giving/receiving verbs.",
+    questions: [
+      {
+        type: "Grammar", qnum: 1,
+        sentence: "宿題を　やって___　から、ゲームを　してもいいです。",
+        eng: "After finishing your homework, you may play games.",
+        prompt: "Which て-form extension means 'do something in advance'?",
+        options: ["おいて", "しまって", "みて", "いて"],
+        answer: 0,
+        explain: "〜ておく means to do something in advance/preparation. やっておく = do it ahead of time. しまう = do completely/accidentally, みる = try doing, いる = ongoing action."
+      },
+      {
+        type: "Grammar", qnum: 2,
+        sentence: "財布を　家に　わすれて___。",
+        eng: "I accidentally left my wallet at home.",
+        prompt: "Which ending expresses an unintended/completed action?",
+        options: ["しまった", "おいた", "みた", "いた"],
+        answer: 0,
+        explain: "〜てしまう expresses completing an action, often with regret or that it happened unintentionally. わすれてしまった = (I'm sorry to say) I forgot it."
+      },
+      {
+        type: "Vocabulary", qnum: 3,
+        sentence: "この　かんじは　___　ですか？",
+        eng: "Do you know this kanji?",
+        prompt: "Which verb means 'to memorize / remember'?",
+        options: ["おぼえて　います", "わすれて　います", "おしえて　います", "はじめて　います"],
+        answer: 0,
+        explain: "覚えています (oboete imasu) = I remember/have memorized. 忘れています = I have forgotten. 教えています = I am teaching."
+      },
+      {
+        type: "Grammar", qnum: 4,
+        sentence: "もっと　はやく　___、バスに　まにあった。",
+        eng: "If I had run faster, I would have caught the bus.",
+        prompt: "Which conditional form fits this 'if' context?",
+        options: ["はしれば", "はしって", "はしると", "はしるから"],
+        answer: 0,
+        explain: "〜ば is a conditional form meaning 'if'. はしれば = if (I) run. 〜と is a natural/automatic condition, 〜から = because."
+      },
+      {
+        type: "Giving & Receiving", qnum: 5,
+        sentence: "先生が　わたしに　本を　___。",
+        eng: "The teacher gave me a book.",
+        prompt: "Which verb means the teacher gave TO me (receiving benefit)?",
+        options: ["くれた", "あげた", "もらった", "やった"],
+        answer: 0,
+        explain: "くれる is used when someone gives TO you (the speaker). あげる = you give to others. もらう = you receive from others."
+      },
+      {
+        type: "Vocabulary", qnum: 6,
+        sentence: "この　しごとは　___　なので　すぐ　できます。",
+        eng: "This work is ___, so it can be done quickly.",
+        prompt: "Which word means 'convenient / easy to use'?",
+        options: ["べんり", "ひつよう", "たいせつ", "ていねい"],
+        answer: 0,
+        explain: "便利 (benri) = convenient. 必要 = necessary, 大切 = important, 丁寧 = polite/careful."
+      },
+    ]
+  },
+  N3: {
+    info: "N3 is the middle ground — ~3,750 vocabulary, ~650 kanji. Tests functional language use including complex grammar like 〜ようにする, 〜ことになる, 〜わけだ, and reading short articles.",
+    questions: [
+      {
+        type: "Grammar", qnum: 1,
+        sentence: "まいにち　たんごを　おぼえる　___　している。",
+        eng: "I am making an effort to memorize vocabulary every day.",
+        prompt: "Which grammar pattern means 'trying/making efforts to do'?",
+        options: ["ようにして", "ことにして", "ものにして", "はずにして"],
+        answer: 0,
+        explain: "〜ようにする expresses making an effort or working toward a goal. ことにする = decide to do, はずだ = expected to."
+      },
+      {
+        type: "Grammar", qnum: 2,
+        sentence: "来月から　日本に　すむ　___。",
+        eng: "It has been decided that I will live in Japan from next month.",
+        prompt: "Which pattern expresses a decision made by circumstances (not by personal choice)?",
+        options: ["ことになった", "ことにした", "ようになった", "ようにした"],
+        answer: 0,
+        explain: "〜ことになる = it has been decided (externally/by circumstance). 〜ことにする = I decided (personal decision). 〜ようになる = came to be able to."
+      },
+      {
+        type: "Reading", qnum: 3,
+        sentence: "「彼女は　日本語が　じょうずですね」「そう　___、3年も　べんきょうしましたから」",
+        eng: '"She is good at Japanese, isn\'t she?" "Well ___, she studied for 3 years."',
+        prompt: "Which expression means 'well, that makes sense / of course'?",
+        options: ["でしょう", "ですから", "ですが", "でしょうか"],
+        answer: 0,
+        explain: "でしょう here is used to agree with a natural consequence. The full pattern 〜わけだ/でしょう expresses 'that explains why' or 'of course'."
+      },
+      {
+        type: "Vocabulary", qnum: 4,
+        sentence: "この　けんきゅうは　かんきょうに　おおきな　___　をあたえた。",
+        eng: "This research had a big ___ on the environment.",
+        prompt: "Which word means 'influence / effect'?",
+        options: ["えいきょう", "げんいん", "けっか", "もくてき"],
+        answer: 0,
+        explain: "影響 (eikyou) = influence/effect. 原因 = cause, 結果 = result, 目的 = purpose/goal."
+      },
+      {
+        type: "Grammar", qnum: 5,
+        sentence: "かれは　にほんごが　はなせる___、つうやくの　しごとを　している。",
+        eng: "Since he can speak Japanese, he works as an interpreter.",
+        prompt: "Which conjunction means 'since / because (naturally)'?",
+        options: ["だけに", "のに", "くせに", "ものの"],
+        answer: 0,
+        explain: "〜だけに means 'precisely because' or 'as expected since'. It emphasizes that a result is natural given the reason. のに = despite, くせに = even though (negative nuance)."
+      },
+      {
+        type: "Vocabulary", qnum: 6,
+        sentence: "二人の　かんけいは　___　している。",
+        eng: "The relationship between the two is ___.",
+        prompt: "Which word means 'changing / transforming'?",
+        options: ["へんか", "かんけい", "えいきょう", "じょうきょう"],
+        answer: 0,
+        explain: "変化 (henka) = change/transformation. 関係 = relationship, 影響 = influence, 状況 = situation."
+      },
+    ]
+  },
+  N2: {
+    info: "N2 is near-fluency level — ~6,000 vocabulary, ~1,000 kanji. Tests complex grammar, formal/written language, business contexts, and the ability to understand newspaper articles and formal speech.",
+    questions: [
+      {
+        type: "Grammar", qnum: 1,
+        sentence: "かれが　せいこうしたのは、どりょくした　___だ。",
+        eng: "The reason he succeeded is that he worked hard.",
+        prompt: "Which grammar pattern means 'precisely because / the reason is'?",
+        options: ["からにほかならない", "にすぎない", "にほかならない", "をものともせず"],
+        answer: 2,
+        explain: "〜にほかならない means 'it is nothing but / precisely because'. It gives a strong reason. にすぎない = nothing more than, をものともせず = undeterred by."
+      },
+      {
+        type: "Grammar", qnum: 2,
+        sentence: "この　きかいを　___、ぜひ　おはなしを　きかせてください。",
+        eng: "Taking this opportunity, please let me hear your story.",
+        prompt: "Which expression means 'taking advantage of this opportunity'?",
+        options: ["きっかけに", "さいわい", "おかげで", "せいで"],
+        answer: 0,
+        explain: "きっかけに = taking as a trigger/opportunity. おかげで = thanks to (positive), せいで = because of (negative blame)."
+      },
+      {
+        type: "Vocabulary", qnum: 3,
+        sentence: "かれの　はっぴょうは　___で、なにを　いいたいのか　わからなかった。",
+        eng: "His presentation was ___, so I didn't know what he wanted to say.",
+        prompt: "Which adjective means 'vague / ambiguous'?",
+        options: ["あいまい", "じゅうなん", "けいこう", "がいねん"],
+        answer: 0,
+        explain: "曖昧 (aimai) = vague/ambiguous. 柔軟 = flexible, 傾向 = tendency, 概念 = concept."
+      },
+      {
+        type: "Grammar", qnum: 4,
+        sentence: "その　けいかくは　いくら　はんたいされようとも、___。",
+        eng: "No matter how much the plan is opposed, we will proceed.",
+        prompt: "Which ending expresses firm determination regardless of obstacles?",
+        options: ["おしすすめる", "やめてしまう", "みなおすべきだ", "かんがえなおす"],
+        answer: 0,
+        explain: "〜ようとも + determination verb expresses 'no matter what happens, I will...'. おしすすめる = push forward/proceed."
+      },
+      {
+        type: "Vocabulary", qnum: 5,
+        sentence: "この　ぶんしょの　___を　かんたんに　せつめいしてください。",
+        eng: "Please briefly explain the ___ of this sentence.",
+        prompt: "Which word means 'concept / notion'?",
+        options: ["がいねん", "けんかい", "すいそく", "ていあん"],
+        answer: 0,
+        explain: "概念 (gainen) = concept/notion. 見解 = view/opinion, 推測 = guess/inference, 提案 = proposal."
+      },
+      {
+        type: "Reading", qnum: 6,
+        sentence: "「わが社の　傾向として、___を　重視する」と　発表した。",
+        eng: "They announced: 'As a tendency of our company, we emphasize ___.'",
+        prompt: "Which word fits as something a company 'emphasizes' as a trend?",
+        options: ["柔軟性", "曖昧さ", "批判", "推測"],
+        answer: 0,
+        explain: "柔軟性 (juunansei = flexibility) is something companies positively emphasize. 曖昧さ = vagueness (negative), 批判 = criticism, 推測 = guess."
+      },
+    ]
+  },
+  N1: {
+    info: "N1 is the highest level — ~10,000 vocabulary, ~2,000 kanji. Tests advanced grammar, nuanced expressions, classical Japanese elements, and the ability to understand complex texts, lectures, and abstract arguments.",
+    questions: [
+      {
+        type: "Grammar", qnum: 1,
+        sentence: "どんなに　つかれていようとも、___ばならない。",
+        eng: "No matter how tired I am, I must ___.",
+        prompt: "Which classical grammar pattern means 'must do' (strong obligation)?",
+        options: ["やりとげなけれ", "やりとげるべき", "やりとげるはず", "やりとげられまい"],
+        answer: 0,
+        explain: "〜なければならない (colloquially なければ) = must do. やりとげる = accomplish/complete. This tests formal written obligation forms."
+      },
+      {
+        type: "Vocabulary", qnum: 2,
+        sentence: "かれの　はなしには　___が　あり、しんじることが　できなかった。",
+        eng: "His story contained ___, so I couldn't believe it.",
+        prompt: "Which word means 'contradiction'?",
+        options: ["むじゅん", "ちゅうしょう", "ほんしつ", "ぎゃくせつ"],
+        answer: 0,
+        explain: "矛盾 (mujun) = contradiction. 抽象 = abstraction, 本質 = essence, 逆説 = paradox."
+      },
+      {
+        type: "Grammar", qnum: 3,
+        sentence: "いかなる　じょうきょうに　___、かれは　おちついていた。",
+        eng: "Regardless of what situation it was, he remained calm.",
+        prompt: "Which formal expression means 'regardless of / whatever'?",
+        options: ["あろうとも", "あるにしても", "あったとして", "あるくせに"],
+        answer: 0,
+        explain: "〜いかなる〜にあろうとも = regardless of any situation (formal/literary). This is an N1 classical conditional form."
+      },
+      {
+        type: "Vocabulary", qnum: 4,
+        sentence: "その　げいじゅつかの　さくひんは　___で、だれも　まねできない。",
+        eng: "That artist's works are ___, and no one can imitate them.",
+        prompt: "Which adjective means 'novel / innovative / strikingly original'?",
+        options: ["ざんしん", "びみょう", "しつよう", "かいぎてき"],
+        answer: 0,
+        explain: "斬新 (zanshin) = novel/strikingly original. 微妙 = subtle/delicate, 執拗 = persistent, 懐疑的 = skeptical."
+      },
+      {
+        type: "Reading", qnum: 5,
+        sentence: "「てつがくの　本質とは、___への　問いかけにほかならない」",
+        eng: '"The essence of philosophy is nothing but questioning ___."',
+        prompt: "Which abstract concept fits philosophically as 'the essence'?",
+        options: ["ほんしつ", "むじゅん", "ちゅうしょう", "どうさつ"],
+        answer: 2,
+        explain: "抽象 (chuushou) = abstraction is the core concern of philosophy. 本質 = essence (already in the sentence), 矛盾 = contradiction, 洞察 = insight."
+      },
+      {
+        type: "Grammar", qnum: 6,
+        sentence: "かれは　ライバルを　___、ついに　チャンピオンに　なった。",
+        eng: "He finally became champion by ___ all his rivals.",
+        prompt: "Which verb means 'to surpass / excel beyond'?",
+        options: ["りょうがして", "むじゅんして", "ほんしつして", "かいぎして"],
+        answer: 0,
+        explain: "凌駕する (ryouga suru) = to surpass/excel beyond. This is a formal N1 verb rarely used in daily conversation."
+      },
+    ]
+  }
+};
+
+// ==================== KANA DATA ====================
 const hiragana = [
   {c:"あ",r:"a"},{c:"い",r:"i"},{c:"う",r:"u"},{c:"え",r:"e"},{c:"お",r:"o"},
   {c:"か",r:"ka"},{c:"き",r:"ki"},{c:"く",r:"ku"},{c:"け",r:"ke"},{c:"こ",r:"ko"},
@@ -626,7 +813,6 @@ const hiragana = [
   {c:"ら",r:"ra"},{c:"り",r:"ri"},{c:"る",r:"ru"},{c:"れ",r:"re"},{c:"ろ",r:"ro"},
   {c:"わ",r:"wa"},{c:"－",r:""},{c:"を",r:"wo"},{c:"－",r:""},{c:"ん",r:"n"},
 ];
-
 const katakana = [
   {c:"ア",r:"a"},{c:"イ",r:"i"},{c:"ウ",r:"u"},{c:"エ",r:"e"},{c:"オ",r:"o"},
   {c:"カ",r:"ka"},{c:"キ",r:"ki"},{c:"ク",r:"ku"},{c:"ケ",r:"ke"},{c:"コ",r:"ko"},
@@ -642,12 +828,9 @@ const katakana = [
 
 // ==================== STATE ====================
 let currentLevel = 'N5';
-let currentCards = [];
-let fcIndex = 0, fcCorrect = 0, fcWrong = 0;
-let isFlipped = false;
-
+let currentCards = [], fcIndex = 0, fcCorrect = 0, fcWrong = 0, isFlipped = false;
 let quizWords = [], quizIndex = 0, quizCorrect = 0, quizWrong = 0, quizAnswered = false;
-
+let examScore = 0, examTotal = 0;
 let progress = JSON.parse(localStorage.getItem('jlpt_progress') || '{"mastered":[],"studied":[],"streak":0,"lastDate":""}');
 
 // ==================== TABS ====================
@@ -657,6 +840,7 @@ function showTab(name, el) {
   document.getElementById('tab-' + name).classList.add('active');
   el.classList.add('active');
   if (name === 'progress') updateProgressTab();
+  if (name === 'exam') renderExam();
 }
 
 // ==================== LEVEL ====================
@@ -666,6 +850,8 @@ function setLevel(level) {
   if (vocab[level] && vocab[level].length > 0) {
     initFlashcards();
     startQuiz();
+    const activeTab = document.querySelector('.tab-content.active');
+    if (activeTab && activeTab.id === 'tab-exam') renderExam();
   } else {
     alert('Coming soon! ' + level + ' vocabulary is being added.');
   }
@@ -694,6 +880,9 @@ function renderCard() {
   document.getElementById('fc-fill').style.width = `${(fcIndex / currentCards.length) * 100}%`;
   document.getElementById('fc-correct').textContent = fcCorrect;
   document.getElementById('fc-wrong').textContent = fcWrong;
+  const mnEl = document.getElementById('fc-mnem');
+  if (w.mnem) { mnEl.textContent = w.mnem; mnEl.style.display = 'block'; }
+  else { mnEl.style.display = 'none'; }
   document.getElementById('flashcard').classList.remove('flipped');
   document.getElementById('fc-actions').style.display = 'none';
   isFlipped = false;
@@ -715,9 +904,7 @@ function rateCard(correct) {
     fcCorrect++;
     const w = currentCards[fcIndex].k;
     if (!progress.mastered.includes(w)) { progress.mastered.push(w); saveProgress(); }
-  } else {
-    fcWrong++;
-  }
+  } else { fcWrong++; }
   fcIndex++;
   renderCard();
 }
@@ -755,11 +942,9 @@ function renderQuiz() {
   document.getElementById('quiz-score-text').textContent = `Score: ${quizCorrect}/${quizIndex}`;
   document.getElementById('quiz-qnum').textContent = `Q ${quizIndex + 1}/10`;
   document.getElementById('quiz-fill').style.width = `${(quizIndex / quizWords.length) * 100}%`;
-
   const correct = w.m;
   let opts = [correct, ...shuffle(all.filter(x => x.m !== correct)).slice(0, 3).map(x => x.m)];
   opts = shuffle(opts);
-
   const container = document.getElementById('quiz-options');
   container.innerHTML = '';
   opts.forEach(opt => {
@@ -774,17 +959,12 @@ function renderQuiz() {
 function answerQuiz(btn, chosen, correct) {
   if (quizAnswered) return;
   quizAnswered = true;
-  document.querySelectorAll('.option-btn').forEach(b => {
-    b.disabled = true;
-    if (b.textContent === correct) b.classList.add('correct');
-  });
+  document.querySelectorAll('.option-btn').forEach(b => { b.disabled = true; if (b.textContent === correct) b.classList.add('correct'); });
   if (chosen === correct) {
-    btn.classList.add('correct');
-    quizCorrect++;
+    btn.classList.add('correct'); quizCorrect++;
     document.getElementById('quiz-feedback').innerHTML = '<span style="color:#4caf50">✓ Correct! 素晴らしい！</span>';
   } else {
-    btn.classList.add('wrong');
-    quizWrong++;
+    btn.classList.add('wrong'); quizWrong++;
     document.getElementById('quiz-feedback').innerHTML = `<span style="color:#e74c3c">✗ Wrong. Answer: ${correct}</span>`;
   }
   quizIndex++;
@@ -807,6 +987,66 @@ function showQuizCompletion() {
   document.getElementById('quiz-emoji').textContent = emoji;
   document.getElementById('quiz-result-title').textContent = title;
   document.getElementById('quiz-result-sub').textContent = sub;
+}
+
+// ==================== EXAM ====================
+function renderExam() {
+  const data = examData[currentLevel];
+  if (!data) return;
+  examScore = 0; examTotal = 0;
+  document.getElementById('exam-subtitle').textContent = `Realistic JLPT ${currentLevel} style questions`;
+  document.getElementById('exam-level-info').textContent = data.info;
+  document.getElementById('exam-score-badge').textContent = 'Score: 0 / 0';
+
+  const container = document.getElementById('exam-questions');
+  container.innerHTML = '';
+
+  data.questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'exam-question-card';
+    card.id = `exam-q-${qi}`;
+
+    const optionsHTML = q.options.map((opt, i) => `
+      <button class="exam-opt" id="exam-opt-${qi}-${i}" onclick="answerExam(${qi}, ${i})">
+        ${String.fromCharCode(65+i)}. ${opt}
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="exam-q-num">Question ${q.qnum}</div>
+      <div class="exam-q-type">${q.type}</div>
+      <div class="exam-sentence">${q.sentence}</div>
+      <div class="exam-sentence-jp">${q.eng}</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px">${q.prompt}</div>
+      <div class="exam-options">${optionsHTML}</div>
+      <div class="exam-explanation" id="exam-exp-${qi}">💡 ${q.explain}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function answerExam(qi, chosen) {
+  const q = examData[currentLevel].questions[qi];
+  if (!q) return;
+  // Check if already answered
+  const expEl = document.getElementById(`exam-exp-${qi}`);
+  if (expEl.style.display === 'block') return;
+
+  examTotal++;
+  const correct = q.answer;
+  for (let i = 0; i < q.options.length; i++) {
+    const btn = document.getElementById(`exam-opt-${qi}-${i}`);
+    btn.disabled = true;
+    if (i === correct) btn.classList.add('correct');
+  }
+  const chosenBtn = document.getElementById(`exam-opt-${qi}-${chosen}`);
+  if (chosen === correct) {
+    examScore++;
+  } else {
+    chosenBtn.classList.add('wrong');
+  }
+  expEl.style.display = 'block';
+  document.getElementById('exam-score-badge').textContent = `Score: ${examScore} / ${examTotal}`;
 }
 
 // ==================== KANA ====================
@@ -851,14 +1091,12 @@ function updateStreak() {
 function resetProgress() {
   if (confirm('Reset all progress? This cannot be undone.')) {
     progress = { mastered: [], studied: [], streak: 0, lastDate: '' };
-    saveProgress();
-    updateProgressTab();
+    saveProgress(); updateProgressTab();
   }
 }
 
 function saveProgress() { localStorage.setItem('jlpt_progress', JSON.stringify(progress)); }
 
-// ==================== UTILS ====================
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
